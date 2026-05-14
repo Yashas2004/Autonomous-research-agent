@@ -1,0 +1,63 @@
+Retrieval-Augmented Generation (RAG): Architecture and Best Practices
+
+Retrieval-Augmented Generation (RAG) is a technique that enhances large language model responses by grounding them in external, up-to-date knowledge retrieved at inference time. Rather than relying solely on knowledge baked into model weights during training, RAG retrieves relevant documents from an external knowledge base and provides them as context to the LLM when generating a response.
+
+Why RAG?
+
+Large language models have three critical limitations that RAG addresses:
+
+Knowledge Cutoff: Models are trained on data up to a certain date. RAG allows them to access current information.
+Hallucination: Without grounding, LLMs sometimes generate plausible-sounding but incorrect information. RAG reduces this by providing factual source material.
+Domain Specificity: General-purpose models lack deep knowledge of proprietary or specialised domains. RAG connects them to domain-specific corpora.
+
+Core RAG Architecture
+
+A RAG system has five main components:
+
+1. Document Store: The raw source documents — PDFs, web pages, text files, databases — that form the knowledge base.
+
+2. Chunking: Documents are split into manageable pieces (chunks) typically between 256 and 1024 tokens. Chunking strategy significantly affects retrieval quality. Semantic chunking (splitting at meaningful boundaries) outperforms fixed-size chunking.
+
+3. Embedding Model: Each chunk is converted into a dense vector (embedding) using a model like OpenAI's text-embedding-3-small, Cohere Embed, or open-source alternatives like sentence-transformers. The embedding captures semantic meaning.
+
+4. Vector Database: Embeddings are stored in a vector database (ChromaDB, Pinecone, Weaviate, Qdrant, FAISS) that enables fast approximate nearest-neighbour (ANN) search.
+
+5. Retriever + Generator: At query time, the user's question is embedded, the most similar chunks are retrieved, and the LLM generates a response using those chunks as context.
+
+Advanced RAG Techniques
+
+Naive RAG (the basic pipeline above) often underperforms in production. Advanced techniques include:
+
+Hybrid Search: Combining dense vector search with sparse BM25 keyword search. This captures both semantic and exact-match relevance. Most production RAG systems use hybrid search.
+
+Re-ranking: After initial retrieval, a cross-encoder re-ranker (e.g., Cohere Rerank, ColBERT) re-scores chunks for precise relevance. This is computationally expensive but significantly improves precision.
+
+HyDE (Hypothetical Document Embeddings): Instead of embedding the raw query, the LLM first generates a hypothetical answer, then that answer is embedded for retrieval. This aligns the query embedding space with the document embedding space.
+
+Multi-Query Retrieval: The LLM generates multiple rephrased versions of the user query, retrieves documents for each, and merges results. This improves recall for complex or ambiguous questions.
+
+Contextual Compression: Retrieved chunks are compressed or filtered using the LLM itself before being passed to the final generation step, reducing noise in the context window.
+
+Parent-Child Chunking: Documents are split into both large parent chunks and small child chunks. Retrieval is done on small chunks (for precision) but the parent chunk is returned (for context).
+
+Agentic RAG
+
+Agentic RAG combines RAG with autonomous agent patterns. Instead of a single retrieval step, an agent iteratively retrieves, assesses sufficiency, and decides whether to retrieve more information (possibly with different queries), scrape additional sources, or synthesise a final answer. This dramatically improves performance on complex, multi-faceted questions.
+
+Evaluation Metrics
+
+RAG systems are evaluated on:
+- Context Precision: Are the retrieved chunks actually relevant to the question?
+- Context Recall: Does the retrieved context contain all information needed to answer?
+- Faithfulness: Does the generated answer accurately reflect the retrieved context?
+- Answer Relevance: Does the generated answer actually address the question?
+
+Frameworks like RAGAS provide automated evaluation pipelines using LLMs as judges.
+
+Common Failure Modes
+
+Retrieval failures are the most common production issue. If the right chunks are not retrieved, even a perfect LLM cannot produce a correct answer. Causes include poor chunking strategy, mismatched embedding models, or insufficient data in the knowledge base.
+
+Context window overflow occurs when retrieved chunks plus conversation history exceed the model's context limit. Mitigation: compress retrieved chunks, limit conversation history, or use a model with a larger context window.
+
+Semantic drift happens when user queries use different terminology than the documents. Mitigation: hybrid search, query expansion, or domain-adapted embeddings.

@@ -1,0 +1,27 @@
+Introduction to Artificial Intelligence
+
+Artificial Intelligence (AI) refers to the simulation of human intelligence in machines that are programmed to think, learn, and problem-solve. The field was formally founded in 1956 at a conference at Dartmouth College, where John McCarthy coined the term "Artificial Intelligence." Since then, AI has evolved from simple rule-based expert systems into sophisticated machine learning models capable of perceiving, reasoning, and generating human-like output.
+
+Core Branches of AI
+
+Machine Learning (ML) is a subset of AI that enables systems to automatically learn and improve from experience without being explicitly programmed. It focuses on developing algorithms that can access data and use it to learn for themselves. The three main types of machine learning are supervised learning, unsupervised learning, and reinforcement learning.
+
+Deep Learning is a further specialisation within machine learning that uses neural networks with many layers (hence "deep") to model complex patterns in data. Deep learning powers many modern AI applications, including image recognition, natural language processing, and autonomous vehicles.
+
+Natural Language Processing (NLP) enables machines to understand, interpret, and generate human language. NLP underpins technologies like chatbots, sentiment analysis, machine translation, and large language models (LLMs) such as GPT-4 and Claude.
+
+Computer Vision allows machines to interpret and understand visual information from the world. Applications include facial recognition, medical image analysis, self-driving cars, and industrial quality inspection.
+
+The AI Development Lifecycle
+
+Building an AI system involves several stages: problem definition, data collection and preparation, model selection and training, evaluation, deployment, and monitoring. Data quality is paramount — models trained on poor or biased data will produce poor or biased outputs.
+
+Current State of AI (2024–2025)
+
+The current era is dominated by large language models and foundation models, which are pretrained on massive datasets and fine-tuned for specific tasks. Companies like OpenAI, Anthropic, Google DeepMind, and Meta AI are leading this frontier. Multimodal AI — systems that process text, images, audio, and video simultaneously — is rapidly becoming the new standard.
+
+Key challenges facing AI today include hallucination (models generating incorrect but confident information), alignment (ensuring AI behaves according to human values), explainability (understanding why models produce certain outputs), and computational cost (training large models requires enormous energy and hardware resources).
+
+Ethical Considerations
+
+AI raises profound ethical questions around privacy, bias, job displacement, autonomous weapons, and the long-term risks of superintelligent systems. Responsible AI development requires diverse teams, transparent processes, robust testing, and thoughtful regulation. Institutions including the EU, UK, and US government have begun publishing AI governance frameworks to address these concerns.

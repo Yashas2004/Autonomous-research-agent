@@ -1,0 +1,67 @@
+Autonomous Agents in Artificial Intelligence
+
+An autonomous agent is a computational entity that perceives its environment, makes decisions, and takes actions to achieve specified goals — all without continuous human intervention. Autonomous agents are a core topic in AI research, robotics, multi-agent systems, and increasingly in large language model (LLM) applications.
+
+Defining Characteristics of Autonomous Agents
+
+Autonomy: The agent operates without direct human control, using its own decision-making logic.
+Reactivity: It perceives and responds to changes in its environment in a timely fashion.
+Proactivity: It does not merely react but takes goal-directed initiative.
+Social ability: It interacts and cooperates with other agents or humans to achieve tasks.
+
+These four properties, described by Wooldridge and Jennings (1995), remain the canonical definition used across the field.
+
+Types of Autonomous Agents
+
+Simple Reflex Agents act based on the current percept only, using condition-action rules. They have no memory and cannot handle partially observable environments effectively.
+
+Model-Based Reflex Agents maintain an internal state that tracks aspects of the world not currently visible. This allows them to handle partially observable environments better than simple reflex agents.
+
+Goal-Based Agents reason about goals and select actions that lead to goal achievement. They require search and planning algorithms to evaluate action sequences.
+
+Utility-Based Agents extend goal-based reasoning by assigning a numeric utility value to different states, enabling trade-offs when multiple goals conflict.
+
+Learning Agents are the most powerful type. They have a learning element that improves performance over time based on feedback, a critic that measures success, and a performance element that selects actions.
+
+LLM-Based Agents (2023–Present)
+
+The emergence of large language models has created a new paradigm: LLM-powered agents. These agents use an LLM as their "brain" to plan, reason, and execute tasks. Key frameworks include:
+
+ReAct (Reasoning + Acting): Introduced by Yao et al. (2022), ReAct interleaves reasoning traces and actions. The agent generates a thought, selects an action, observes the result, and iterates. This allows transparent, interpretable decision-making.
+
+LangChain Agents: The LangChain framework popularised tool-augmented LLM agents. The agent is given a set of tools (web search, calculators, code execution, databases) and autonomously decides which tool to use and in what order.
+
+AutoGPT and BabyAGI: Early demonstrations of fully autonomous GPT-4-based agents capable of breaking down a high-level goal into subtasks, executing them, and reflecting on results.
+
+RAG-Augmented Agents: Retrieval-Augmented Generation (RAG) connects agents to external knowledge bases, allowing them to ground their responses in real documents rather than relying solely on parametric knowledge.
+
+The ReAct Reasoning Pattern in Detail
+
+The ReAct loop follows this structure:
+
+1. Thought: The agent analyses the current state and formulates a plan.
+2. Action: The agent selects and executes a tool or action.
+3. Observation: The agent receives the result of the action.
+4. Repeat: The agent uses the observation to update its understanding and plan the next step.
+5. Final Answer: When sufficient information is gathered, the agent synthesises and returns a response.
+
+This pattern is powerful because it makes the agent's reasoning transparent and auditable. It also allows the agent to recover from mistakes by re-planning based on observations.
+
+Applications of Autonomous Agents
+
+Research Assistants: Agents that autonomously gather, synthesise, and report on scientific literature.
+Software Development: Agents like GitHub Copilot Workspace and Devin that plan, write, test, and debug code.
+Customer Service: Multi-agent systems that handle customer inquiries by routing, retrieving, and responding.
+Scientific Discovery: Agents that design experiments, analyse results, and generate hypotheses.
+Autonomous Vehicles: Perception-planning-action agents operating in physical environments.
+
+Challenges and Open Problems
+
+Memory and Context: LLM context windows are limited. Long-running agents must manage memory carefully — using vector databases, summarisation, or external storage.
+Reliability: Agents can get stuck in loops, make poor tool selections, or hallucinate action results.
+Safety and Alignment: Autonomous action-taking raises significant safety concerns. An agent with broad tool access (e.g., internet, code execution) can cause unintended harm.
+Evaluation: Measuring agent performance is harder than measuring model performance. Benchmarks like AgentBench and WebArena are emerging but remain incomplete.
+
+Future Directions
+
+The future of autonomous agents likely involves multi-agent collaboration (multiple specialised agents working together), longer-horizon planning, better memory architectures, and tighter integration with robotics and physical systems. The field is moving rapidly, with new architectures and capabilities appearing monthly.
