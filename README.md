@@ -3,7 +3,8 @@
 A production-grade AI research assistant powered by **GPT-4o**, **ChromaDB**, and a **ReAct reasoning loop** — built to write sections, synthesise information, and generate structured reports, not just answer Q&A.
 
 ---
-
+## Snapshot:
+![demo](cognito.jpeg)
 ## ✨ What Makes This Different
 
 | Old (Ollama / QA bot)          | New (GPT-4o / Research Agent)                        |
